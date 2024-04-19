@@ -10,8 +10,8 @@ import java.util.function.Predicate;
 
 import by.fksis.telephone_directory.model.Repository;
 import by.fksis.telephone_directory.model.RepositoryException;
+import by.fksis.telephone_directory.model.RepositoryUtils;
 import by.fksis.telephone_directory.model.Subscriber;
-import by.fksis.telephone_directory.model.SubscriberDirectory;
 import by.fksis.telephone_directory.model.SubscriberException;
 import by.fksis.telephone_directory.view.View;
 
@@ -45,7 +45,7 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			view.showOpenDialog().ifPresent(file -> {
 				try {
-					((SubscriberDirectory)model).open(file);
+					RepositoryUtils.open(file, model);
 					view.reset();
 					view.deleteAllSubscribers();
 					model.list().forEach(sub -> view.addSubscriber(sub.getNumber(), sub.getFullName().toString(), sub.getAddress().toString()));
@@ -65,7 +65,7 @@ public class Controller {
 		public void actionPerformed(ActionEvent e) {
 			view.showSaveDialog().ifPresent(file -> {
 				try {
-					((SubscriberDirectory)model).save(file);
+					RepositoryUtils.save(file, model);
 				} catch (RepositoryException ex) {
 					view.showExceptionMessage(ex.getLocalizedMessage());
 				} catch (IOException ex) {

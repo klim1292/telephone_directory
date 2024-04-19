@@ -4,11 +4,27 @@ import java.util.ResourceBundle;
 
 public class SubscriberException extends RuntimeException {
 
-	private static final long serialVersionUID = 5274245247193534573L;
+	private static final long serialVersionUID = -7812148264356440939L;
 
 	enum MessageKey {
 		INVALID_NUMBER, NULL_FULL_NAME, NULL_ADDRESS, INVALID_SURNAME, INVALID_NAME, INVALID_PATRONYMIC,
 		INVALID_POPULATED_AREA, INVALID_STREET, INVALID_HOUSE, INVALID_FLAT
+	}
+	
+	public SubscriberException() {
+		
+	}
+	
+	public SubscriberException(String message) {
+		super(message);
+	}
+	
+	public SubscriberException(Throwable cause) {
+		super(cause);
+	}
+	
+	public SubscriberException(String message, Throwable cause) {
+		super(message, cause);
 	}
 	
 	public SubscriberException(MessageKey messageKey) {
@@ -21,7 +37,8 @@ public class SubscriberException extends RuntimeException {
 	
 	@Override
 	public String getLocalizedMessage() {
-		return ResourceBundle.getBundle("exceptmess").getString(getMessage());
+		ResourceBundle rb = ResourceBundle.getBundle("exceptmess");
+		return rb.containsKey(getMessage()) ? rb.getString(getMessage()) : getMessage();
 	}
 	
 }

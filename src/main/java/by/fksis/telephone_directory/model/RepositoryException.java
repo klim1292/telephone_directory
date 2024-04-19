@@ -1,8 +1,10 @@
 package by.fksis.telephone_directory.model;
 
-public class RepositoryException extends Exception {
+import java.util.ResourceBundle;
 
-	private static final long serialVersionUID = -4121102897254475095L;
+public class RepositoryException extends Exception {
+	
+	private static final long serialVersionUID = 4056957928958745140L;
 
 	public RepositoryException() {
 		
@@ -18,6 +20,12 @@ public class RepositoryException extends Exception {
 	
 	public RepositoryException(String message, Throwable cause) {
 		super(message, cause);
+	}
+	
+	@Override
+	public String getLocalizedMessage() {
+		ResourceBundle rb = ResourceBundle.getBundle("exceptmess");
+		return rb.containsKey(getMessage()) ? rb.getString(getMessage()) : getMessage();
 	}
 	
 }

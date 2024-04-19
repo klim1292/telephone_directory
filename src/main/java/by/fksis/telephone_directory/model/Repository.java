@@ -12,5 +12,6 @@ public interface Repository<T> {
 	void delete(long id) throws RepositoryException;
 	List<T> search(Predicate<T> criterion);
 	List<T> list();
+	void clear();
 	
 }

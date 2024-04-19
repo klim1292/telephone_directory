@@ -394,16 +394,14 @@ public final class View extends JFrame {
 		JFileChooser fileChooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("DAT", "dat");
 		fileChooser.setFileFilter(filter);
-		fileChooser.showOpenDialog(this);
-		return Optional.ofNullable(fileChooser.getSelectedFile());
+		return fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION ? Optional.ofNullable(fileChooser.getSelectedFile()) : Optional.empty();
 	}
 	
 	public Optional<File> showSaveDialog() {
 		JFileChooser fileChooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("DAT", "dat");
 		fileChooser.setFileFilter(filter);
-		fileChooser.showSaveDialog(this);
-		return Optional.ofNullable(fileChooser.getSelectedFile());
+		return fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION ? Optional.ofNullable(fileChooser.getSelectedFile()) : Optional.empty();
 	}
 	
 	public void showExceptionMessage(String message) {

@@ -82,7 +82,7 @@ public class Subscriber implements Serializable {
 		
 		@Override
 		public String toString() {
-			return String.format("%s %c.%s", surname, name.charAt(0), patronymic != null ? patronymic.charAt(0) + "." : "");
+			return surname + " " + name.charAt(0) + "." + (patronymic != null ? patronymic.charAt(0) + "." : "");
 		}
 		
 	}
@@ -132,7 +132,7 @@ public class Subscriber implements Serializable {
 		
 		@Override
 		public String toString() {
-			return String.format("%s, %s %d%s", populatedArea, street, house, flat > 0 ? "-" + flat : "");
+			return populatedArea + ", " + street + " " + house + (flat > 0 ? "-" + flat : "");
 		}
 		
 	}
